@@ -114,11 +114,14 @@ class ChangeTextTest {
         val packageName = MODEL_PACKAGE
         waitForPackage(packageName)
 
-        device.findObject(By.res(MODEL_PACKAGE, "userInput")).text = "   "
+        device.findObject(By.res(MODEL_PACKAGE, "userInput")).text = textToSet
+        device.findObject(By.res(MODEL_PACKAGE, "buttonChange")).click()
+
+        device.findObject(By.res(MODEL_PACKAGE, "userInput")).text = "  "
         device.findObject(By.res(MODEL_PACKAGE, "buttonChange")).click()
 
         val result = device.findObject(By.res(MODEL_PACKAGE, "textToBeChanged")).text
-        assertEquals(result, "Привет, UiAutomator!")
+        assertEquals(result, textToSet)
     }
     @Test
     fun testText() {
